@@ -28,7 +28,7 @@ This document defines how the product is structured: components, data flow, and 
 
 - Everyone builds against the same structure — no improvised architectures
 - Structural decisions are recorded with reasoning, so changes are made with awareness of what they overturn
-- It is what the dev team and `AGENTS.md` reference when writing code
+- It is what the dev team and AI guidance files (`AI-TOOL-GUIDE.md`, `CLAUDE.md`, and `.github/copilot-instructions.md`) reference when writing code
 
 ## Rules
 

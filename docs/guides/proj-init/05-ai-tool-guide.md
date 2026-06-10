@@ -16,7 +16,7 @@ This document defines the rules, constraints, and conventions that guide AI assi
 
 ## Structure
 
-``` Text
+```text
 AI-TOOL-GUIDE.md                       ← all rules live here
 CLAUDE.md                              ← Claude Code adapter (references AI-TOOL-GUIDE.md + Claude-specific config)
 .github/copilot-instructions.md        ← Copilot adapter (mirrors or references AI-TOOL-GUIDE.md content)

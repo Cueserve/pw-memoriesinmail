@@ -1,8 +1,10 @@
-# Project Initiation Boilerplate
+# CS AI-Powered Project Kickstart
 
-A starter template that enforces a documented, **gated project-initiation process** before any code is written. Clone it, run the steps in order, and you end up with an aligned set of source-of-truth documents (`PRODUCT.md` → `README.md`) plus the governance to keep them honest.
+Repository: `cs-ai-powered-proj-kickstart`
 
-This template is **stack-agnostic** — the technology stack is a decision *made during* initiation (Step 4), not baked into the boilerplate.
+A boilerplate repository that enforces a documented, **gated project-initiation process** before any code is written. Clone it, run the steps in order, and you end up with an aligned set of source-of-truth documents (`PRODUCT.md` → `README.md`) plus the governance to keep them honest.
+
+This boilerplate is **stack-agnostic** — the technology stack is a decision *made during* initiation (Step 4), not pre-baked.
 
 ---
 
@@ -12,7 +14,7 @@ Before writing any code, run the Project Initiation process:
 
 **→ [Project Initiation Guide](docs/guides/proj-init/00-overview.md)**
 
-It walks through one prerequisite plus six steps. Each step is run as a slash command, produces one source-of-truth document, and is finalized by a pull request that the right reviewer must approve.
+It walks through one prerequisite plus six steps. Steps 1-6 are run as slash commands, each produces one source-of-truth document, and each is finalized by a pull request that the right reviewer must approve.
 
 ---
 
@@ -47,6 +49,8 @@ See the [Project Initiation Guide](docs/guides/proj-init/00-overview.md) for who
 ```text
 docs/guides/proj-init/   ← the initiation guides — what each step does and why
 .claude/commands/        ← the /init-* slash commands that run each step
+README.md                ← this boilerplate entrypoint (replaced in Step 6)
+PRODUCT.md ... README.md ← generated source-of-truth docs after running Steps 1-6
 ```
 
 ## After Initiation
