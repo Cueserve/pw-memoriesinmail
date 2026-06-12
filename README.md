@@ -10,7 +10,7 @@ A boilerplate project that guides team through a **clear, step‑by‑step proje
 
 Before writing any code, run the Project Initiation process:
 
-**→ [Project Initiation Guide](docs/guides/proj-init/00-overview.md)**
+**→ [Project Initiation Guide](docs/guides/proj-init/_overview.md)**
 
 It walks through eight steps. Each step produces one source-of-truth document, finalized by a pull request. **Claude Code users** run the `/init-*` slash commands. **GitHub Copilot users** run the matching prompt files from `.github/prompts/`. Both tool paths load the same shared runner, step registry, and step guides from `docs/guides/proj-init/`.
 
@@ -51,7 +51,7 @@ Claude commands and Copilot prompts are thin adapters. The maintained workflow l
 
 Run `/check-doc-status` at any time to see which steps are merged, which PR is open, and what's next.
 
-See the [Project Initiation Guide](docs/guides/proj-init/00-overview.md) for who owns each step, the PR gate, and the full rules.
+See the [Project Initiation Guide](docs/guides/proj-init/_overview.md) for who owns each step, the PR gate, and the full rules.
 
 ## Repository Structure
 
@@ -81,4 +81,4 @@ Step 7 (`/init-readme`) **replaces this README** with your project's own — des
 
 ### Keeping docs current
 
-Run `/update-doc <docname>` any time a source-of-truth document diverges from reality — a changed requirement, a new library, an architecture decision. It updates only the affected sections and opens a PR through the same review gate that originally finalized the document. See the [trigger table](docs/guides/proj-init/00-overview.md#keeping-docs-current) for when to update which doc.
+Run `/update-doc <docname>` any time a source-of-truth document diverges from reality — a changed requirement, a new library, an architecture decision. It updates only the affected sections and opens a PR through the same review gate that originally finalized the document. See the [trigger table](docs/guides/proj-init/_overview.md#keeping-docs-current) for when to update which doc.
