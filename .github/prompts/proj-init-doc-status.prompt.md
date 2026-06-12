@@ -1,0 +1,14 @@
+---
+agent: agent
+description: Show project initiation status - which steps are merged, in progress, or not started
+---
+
+# Project Init Document Status
+
+Run the shared Project Initiation document status workflow.
+
+Load `docs/guides/proj-init/doc-status.md`, then execute it exactly.
+
+If the file fails to load, halt execution and output: `Error: docs/guides/proj-init/doc-status.md could not be loaded. Resolve this before continuing.`
+
+Do not duplicate or override the shared workflow. `doc-status.md` owns the status workflow, implementation, and rules.

@@ -27,11 +27,11 @@ PRODUCT.md → PRD.md → ARCHITECTURE.md
 | 7 | `/proj-init-readme` | `.github/prompts/proj-init-readme.prompt.md` | `README.md` | Architect | Entry point: setup, env config, and how to run |
 | 8 | `/proj-init-backlog` | `.github/prompts/proj-init-backlog.prompt.md` | `BACKLOG.md` + host issues/work items | Product Owner | Seed the issue tracker; bridge initiation to execution |
 
-The workflow is maintained in one place: [_run-step.md](_run-step.md). Step metadata is maintained in [_steps.yml](_steps.yml). Claude commands and Copilot prompts are adapters only.
+The workflow is maintained in one place: [_run-step.md](_run-step.md). Step metadata is maintained in [_steps.yml](_steps.yml). Claude commands and Copilot prompts are adapters only. Post-init utility workflows live in [doc-status.md](doc-status.md) and [doc-update.md](doc-update.md).
 
 ## Check where you are
 
-Run `/proj-init-doc-status` at any time to see which steps are merged, which PR is open, and what to run next. Read-only — nothing is written or pushed.
+Run `/proj-init-doc-status` in Claude Code or `.github/prompts/proj-init-doc-status.prompt.md` in GitHub Copilot at any time to see which steps are merged, which PR is open, and what to run next. Read-only — nothing is written or pushed.
 
 ## How to run a step
 
@@ -79,7 +79,7 @@ To avoid approval bottlenecks, Step 1 must define a backup path in `CONTRIBUTING
 
 ## Keeping docs current
 
-After initiation, run `/proj-init-doc-update <docname>` any time a source-of-truth document diverges from reality. It updates only the changed sections and opens a PR through the same review gate that finalized the document.
+After initiation, run `/proj-init-doc-update <docname>` in Claude Code or `.github/prompts/proj-init-doc-update.prompt.md` in GitHub Copilot any time a source-of-truth document diverges from reality. It updates only the changed sections and opens a PR through the same review gate that finalized the document.
 
 **When to update which document:**
 
