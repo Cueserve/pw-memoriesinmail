@@ -1,0 +1,136 @@
+steps:
+  - id: 2
+    command: init-product
+    title: Product Concept
+    branch: init/product
+    outputs:
+      - PRODUCT.md
+    guide: docs/guides/proj-init/02-prod-concept.md
+    upstream: []
+    owner: Product Owner
+    reviewer: Product Owner
+    commitMessage: "docs: add PRODUCT.md (Step 2)"
+    prSummary: "Summarize the product concept decisions and include the Step 2 reviewer checklist."
+    finalReminder: "PRODUCT.md becomes final only when the Product Owner approves and merges the PR/MR."
+
+  - id: 3
+    command: init-prd
+    title: Product Requirements Document
+    branch: init/prd
+    outputs:
+      - PRD.md
+    guide: docs/guides/proj-init/03-prod-requirements.md
+    upstream:
+      - PRODUCT.md
+    owner: Product Owner
+    reviewer: Product Owner
+    commitMessage: "docs: add PRD.md (Step 3)"
+    prSummary: "Summarize the requirements and include the Step 3 reviewer checklist."
+    finalReminder: "PRD.md becomes final only when the Product Owner approves and merges the PR/MR."
+
+  - id: 4
+    command: init-architecture
+    title: Architecture
+    branch: init/architecture
+    outputs:
+      - ARCHITECTURE.md
+    guide: docs/guides/proj-init/04-architecture.md
+    upstream:
+      - PRD.md
+    owner: Architect
+    reviewer: Architect + Product Owner
+    commitMessage: "docs: add ARCHITECTURE.md (Step 4)"
+    prSummary: "Summarize the design decisions and include the Step 4 reviewer checklist."
+    finalReminder: "ARCHITECTURE.md becomes final only when the Architect and Product Owner approve and merge the PR/MR."
+
+  - id: 5
+    command: init-techstack
+    title: Tech Stack
+    branch: init/techstack
+    outputs:
+      - TECH-STACK.md
+      - CONTRIBUTING.md
+    guide: docs/guides/proj-init/05-tech-stack.md
+    upstream:
+      - PRD.md
+      - ARCHITECTURE.md
+    owner: Architect
+    reviewer: Architect
+    commitMessage: "docs: add TECH-STACK.md and CONTRIBUTING tooling layer (Step 5)"
+    prSummary: "Summarize the stack choices, the tooling commands added, and include the Step 5 reviewer checklist."
+    finalReminder: "TECH-STACK.md and the CONTRIBUTING.md tooling layer become final only when the Architect approves and merges the PR/MR."
+    specialActions:
+      - Append the tooling layer to CONTRIBUTING.md using only technologies approved in TECH-STACK.md. Preserve the Step 1 governance layer.
+
+  - id: 6
+    command: init-aitoolguide
+    title: AI Tool Guide
+    branch: init/aitoolguide
+    outputs:
+      - AI-TOOL-GUIDE.md
+      - CLAUDE.md
+      - .github/copilot-instructions.md
+    conditionalOutputs: true
+    guide: docs/guides/proj-init/06-ai-tool-guide.md
+    upstream:
+      - TECH-STACK.md
+    owner: Architect
+    reviewer: Architect
+    commitMessage: "docs: add AI-TOOL-GUIDE.md and tool adapters (Step 6)"
+    prSummary: "Summarize the AI rules, list the generated adapter files, and include the Step 6 reviewer checklist."
+    finalReminder: "AI-TOOL-GUIDE.md and generated adapter files become final only when the Architect approves and merges the PR/MR."
+    specialActions:
+      - Ask which AI tools the team will use before generating adapters.
+      - Generate AI-TOOL-GUIDE.md always.
+      - Generate only the adapter files required for the selected tools.
+      - Keep shared rules in AI-TOOL-GUIDE.md; adapters contain only tool-specific config.
+
+  - id: 7
+    command: init-readme
+    title: README
+    branch: init/readme
+    outputs:
+      - README.md
+    guide: docs/guides/proj-init/07-readme.md
+    upstream:
+      - PRODUCT.md
+      - PRD.md
+      - ARCHITECTURE.md
+      - TECH-STACK.md
+      - AI-TOOL-GUIDE.md
+    owner: Architect
+    reviewer: Architect
+    commitMessage: "docs: replace boilerplate README with project README (Step 7)"
+    prSummary: "Note that the boilerplate README is replaced and include the Step 7 reviewer checklist."
+    finalReminder: "README.md becomes final only when the Architect approves and merges the PR/MR. Initiation is complete only after Step 8 is merged."
+    specialActions:
+      - Replace the boilerplate README with the project README.
+      - Remove initiation scaffold content from README.md.
+      - Test every command included in README.md before committing.
+
+  - id: 8
+    command: init-backlog
+    title: Initial Backlog
+    branch: init/backlog
+    outputs:
+      - BACKLOG.md
+    guide: docs/guides/proj-init/08-backlog.md
+    upstream:
+      - PRODUCT.md
+      - PRD.md
+      - ARCHITECTURE.md
+      - TECH-STACK.md
+      - AI-TOOL-GUIDE.md
+      - README.md
+    owner: Product Owner
+    reviewer: Product Owner
+    commitMessage: "docs: add BACKLOG.md - Step 8 initial backlog"
+    prSummary: "State the epic count, story count, priority breakdown, and include the Step 8 reviewer checklist."
+    finalReminder: "BACKLOG.md becomes final only when the Product Owner approves and merges the PR/MR. Once merged, initiation is complete."
+    specialPreconditions:
+      - Detect host issue tracker CLI availability before confirmation: GitHub gh, Azure DevOps az boards, or PENDING manual creation.
+    specialActions:
+      - Derive epics and stories from PRODUCT.md and PRD.md before creating host items.
+      - Present the derived backlog and wait for approval before host writes or file writes.
+      - Create host work items one at a time and capture IDs.
+      - If no supported CLI is available, record PENDING IDs and manual creation notes in BACKLOG.md.

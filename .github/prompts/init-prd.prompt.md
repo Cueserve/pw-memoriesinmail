@@ -1,6 +1,6 @@
 ---
+agent: agent
 description: Step 3 project initiation - generate PRD.md
-allowed-tools: Read, Write, Edit, Glob, Bash(git:*), Bash(gh:*), Bash(az:*), Bash(glab:*)
 ---
 
 # Init PRD

@@ -1,6 +1,6 @@
 ---
+agent: agent
 description: Step 7 project initiation - replace boilerplate README.md
-allowed-tools: Read, Write, Edit, Glob, Bash(git:*), Bash(gh:*), Bash(az:*), Bash(glab:*)
 ---
 
 # Init README

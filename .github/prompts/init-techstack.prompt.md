@@ -1,6 +1,6 @@
 ---
+agent: agent
 description: Step 5 project initiation - generate TECH-STACK.md and CONTRIBUTING.md tooling layer
-allowed-tools: Read, Write, Edit, Glob, Bash(git:*), Bash(gh:*), Bash(az:*), Bash(glab:*)
 ---
 
 # Init Tech Stack

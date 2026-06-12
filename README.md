@@ -1,6 +1,6 @@
 # CS Project Kickstart
 
-> AI-powered starter kit for structured project initiation — tool-agnostic guides with slash-command automation for Claude Code
+> AI-powered starter kit for structured project initiation — tool-agnostic guides with thin adapters for Claude Code and GitHub Copilot
 
 A boilerplate project that guides team through a **clear, step‑by‑step project‑initiation process** before any coding begins. You clone it, follow the steps, and end up with a consistent set of source‑of‑truth documents (`PRODUCT.md` → `README.md`) along with the rules that keep everything aligned as the project grows. This boilerplate is not tied to any tech stack to start with — technology stack is chosen during the initiation process (Step 5).
 
@@ -12,7 +12,7 @@ Before writing any code, run the Project Initiation process:
 
 **→ [Project Initiation Guide](docs/guides/proj-init/00-overview.md)**
 
-It walks through eight steps. Each step produces one source-of-truth document, finalized by a pull request. **Claude Code users** run the `/init-*` slash commands for an automated flow. **Teams using Copilot or any other AI assistant** follow the step guides in `docs/guides/proj-init/` directly in their AI chat.
+It walks through eight steps. Each step produces one source-of-truth document, finalized by a pull request. **Claude Code users** run the `/init-*` slash commands. **GitHub Copilot users** run the matching prompt files from `.github/prompts/`. Both tool paths load the same shared runner, step registry, and step guides from `docs/guides/proj-init/`.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ It walks through eight steps. Each step produces one source-of-truth document, f
 Every step is the same loop — a document is **final only when its PR is merged to `main`**:
 
 1. **Branch** off `main` (`init/<step>`).
-2. **Produce the document** — Claude Code: run the step's `/init-*` command. Any other AI tool: open the step's guide from `docs/guides/proj-init/` in your AI chat and follow it directly.
+2. **Produce the document** — Claude Code: run the step's `/init-*` command. GitHub Copilot: run the matching `.github/prompts/init-*.prompt.md` prompt. Any other AI tool: open `docs/guides/proj-init/_run-step.md`, the step entry in `docs/guides/proj-init/_steps.yml`, and the step guide in your AI chat.
 3. **Open a PR.**
 4. **The CODEOWNER reviews and merges** — merge = finalized.
 5. **The next step branches off the updated `main`** — Claude Code commands verify this automatically; other tools check manually that the upstream document is merged before starting.
@@ -36,18 +36,18 @@ No draft files, no status flags: a doc on a branch is a draft, a doc on `main` i
 
 ## The Steps
 
-| Step | Command | Produces |
-| ---- | ------- | -------- |
-| 1 | *manual setup* | branch protection + `CONTRIBUTING.md` (governance); required-reviewer policy if plan supports it |
-| 2 | `/init-product` | `PRODUCT.md` |
-| 3 | `/init-prd` | `PRD.md` |
-| 4 | `/init-architecture` | `ARCHITECTURE.md` |
-| 5 | `/init-techstack` | `TECH-STACK.md` (+ `CONTRIBUTING.md` tooling layer) |
-| 6 | `/init-aitoolguide` | `AI-TOOL-GUIDE.md` + one adapter per AI tool in use (e.g. `CLAUDE.md`, `.github/copilot-instructions.md`) |
-| 7 | `/init-readme` | `README.md` (replaces this file) |
-| 8 | `/init-backlog` | `BACKLOG.md` + host issues/work items |
+| Step | Claude Code | GitHub Copilot | Produces |
+| ---- | ----------- | -------------- | -------- |
+| 1 | *manual setup* | *manual setup* | branch protection + `CONTRIBUTING.md` (governance); required-reviewer policy if plan supports it |
+| 2 | `/init-product` | `.github/prompts/init-product.prompt.md` | `PRODUCT.md` |
+| 3 | `/init-prd` | `.github/prompts/init-prd.prompt.md` | `PRD.md` |
+| 4 | `/init-architecture` | `.github/prompts/init-architecture.prompt.md` | `ARCHITECTURE.md` |
+| 5 | `/init-techstack` | `.github/prompts/init-techstack.prompt.md` | `TECH-STACK.md` (+ `CONTRIBUTING.md` tooling layer) |
+| 6 | `/init-aitoolguide` | `.github/prompts/init-aitoolguide.prompt.md` | `AI-TOOL-GUIDE.md` + one adapter per AI tool in use (e.g. `CLAUDE.md`, `.github/copilot-instructions.md`) |
+| 7 | `/init-readme` | `.github/prompts/init-readme.prompt.md` | `README.md` (replaces this file) |
+| 8 | `/init-backlog` | `.github/prompts/init-backlog.prompt.md` | `BACKLOG.md` + host issues/work items |
 
-Commands are Claude Code slash commands. Teams using Copilot or another AI tool follow the linked guide for each step directly in their AI chat.
+Claude commands and Copilot prompts are thin adapters. The maintained workflow lives in `docs/guides/proj-init/_run-step.md`, step-specific metadata lives in `docs/guides/proj-init/_steps.yml`, and document rules live in the numbered step guides.
 
 Run `/check-doc-status` at any time to see which steps are merged, which PR is open, and what's next.
 
@@ -56,8 +56,10 @@ See the [Project Initiation Guide](docs/guides/proj-init/00-overview.md) for who
 ## Repository Structure
 
 ```text
-docs/guides/proj-init/           ← step-by-step guides (use directly in any AI chat)
-.claude/commands/                ← /init-* slash commands + /update-doc (Claude Code automation)
+docs/guides/proj-init/           ← shared runner, step registry, and step-by-step guides
+.claude/commands/                ← thin /init-* adapters + /update-doc and /check-doc-status
+.github/prompts/                 ← thin Copilot prompt adapters for the /init-* steps
+.github/copilot-instructions.md  ← Copilot rule: use docs/guides/proj-init/ as source of truth
 README.md                        ← this boilerplate entrypoint (replaced in Step 7)
 
 Generated after running Steps 1–8:

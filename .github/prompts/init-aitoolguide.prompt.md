@@ -1,6 +1,6 @@
 ---
+agent: agent
 description: Step 6 project initiation - generate AI-TOOL-GUIDE.md and adapter files
-allowed-tools: Read, Write, Edit, Glob, Bash(git:*), Bash(gh:*), Bash(az:*), Bash(glab:*)
 ---
 
 # Init AI Tool Guide
