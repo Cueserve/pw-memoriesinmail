@@ -38,7 +38,7 @@ Run `/check-doc-status` at any time to see which steps are merged, which PR is o
 Every step is the same five-move loop. A document is **final only when its PR/MR is merged to `main`**.
 
 1. **Branch** off `main`: `init/<step>` (e.g. `init/product`).
-2. **Produce the document** — two paths depending on your AI tool:
+2. **Produce the document** — choose the path for your AI tool:
    - **Claude Code**: run the step's `/init-*` slash command. It loads `_run-step.md`, `_steps.yml`, and the step guide.
    - **GitHub Copilot**: run the matching `.github/prompts/init-*.prompt.md` prompt. It loads the same shared runner, registry, and step guide.
    - **Any other AI tool**: open `_run-step.md`, the step entry in `_steps.yml`, and the step guide in your AI chat.

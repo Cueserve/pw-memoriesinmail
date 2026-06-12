@@ -18,7 +18,7 @@ It walks through eight steps. Each step produces one source-of-truth document, f
 
 - **Git** and a repository on a supported **Git host** — GitHub, Azure DevOps, Bitbucket, or GitLab. Step 1 configures branch governance to match your host, plan, and team size — see [Step 1](docs/guides/proj-init/01-repo-setup.md) for what's available on free vs. paid plans.
 - Your host's **PR/MR CLI** — `gh` (GitHub), `az repos` (Azure DevOps), `glab` (GitLab) — or the host's web UI. Bitbucket has no official CLI; use the web UI or the third-party `atlassian-cli`. Without a CLI, push the branch and open the PR/MR manually.
-- An AI coding assistant — Claude Code, GitHub Copilot Chat, or any tool your team or client uses. Claude Code users get automated `/init-*` slash commands; other tools follow the step guides directly.
+- An AI coding assistant — Claude Code, GitHub Copilot Chat, or any tool your team or client uses. Claude Code users get `/init-*` slash commands, Copilot users get `.github/prompts/init-*.prompt.md` prompt adapters, and other tools use the shared runner, step registry, and step guides directly.
 
 ---
 
