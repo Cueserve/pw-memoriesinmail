@@ -84,6 +84,7 @@ steps:
       - Generate AI-TOOL-GUIDE.md always.
       - Generate only the adapter files required for the selected tools.
       - Keep shared rules in AI-TOOL-GUIDE.md; adapters contain only tool-specific config.
+      - When generating .github/copilot-instructions.md, preserve the INITIATION-RUNNER block (including its HTML comment markers) verbatim and append project-specific rules after it. Do not remove or rewrite that block.
 
   - id: 7
     command: init-readme
@@ -114,6 +115,7 @@ steps:
     branch: init/backlog
     outputs:
       - BACKLOG.md
+    conditionalOutputs: true
     guide: docs/guides/proj-init/08-backlog.md
     upstream:
       - PRODUCT.md
@@ -134,3 +136,4 @@ steps:
       - Present the derived backlog and wait for approval before host writes or file writes.
       - Create host work items one at a time and capture IDs.
       - If no supported CLI is available, record PENDING IDs and manual creation notes in BACKLOG.md.
+      - Remove the INITIATION-RUNNER block (including its HTML comment markers) from .github/copilot-instructions.md if present. Include the file in the Step 8 commit.
